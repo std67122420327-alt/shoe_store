@@ -1,0 +1,19 @@
+from flask import Blueprint, render_template, request, abort
+from shoe_store.extensions import db
+from shoe_store.models import Food, Category
+
+
+core_bp = Blueprint('core', __name__, template_folder='templates')
+
+@core_bp.route('/')
+def index():
+    page = request.args.get('page',type=int)
+    foods = db.paginate(db.select(Food), per_page=4, page=page)
+    return render_template('core/index.html', title='Home Page', page=page, shoes=shoes )
+
+@core_bp.route('/<int:id>/details')
+def details(id):
+    food = db.session.get(Shoe, id)
+    if not shoe:
+        abort(404)
+    return render_template('core/shoe_detail.html', title='Details Page', shoe=shoe)

@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
+    <h2 class="section-title text-center mb-5" style="font-size: 3rem; font-weight: 800; color: #333;">
+      <i class="bi bi-search" style="color: #ff3385;"></i> {{title}}
+    </h2>
+
+    {% if q %}
+      <div class="alert shadow-sm mb-5" style="background: linear-gradient(135deg, #fff5f8 0%, #fdf2f7 100%); border: 3px solid #ffe6f0; border-radius: 35px; color: #333; padding: 25px;">
+        <i class="bi bi-info-circle-fill" style="color: #ff3385;"></i> 
+        พบรองเท้าที่ตรงกับคำว่า "<strong style="color: #ff3385; font-size: 1.2rem;">{{q}}</strong>" ทั้งหมด <strong>{{shoes|length}}</strong> รายการ
+      </div>
+    {% endif %}
+
+    <div class="row g-5">
+      {% for shoe in shoes %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card card-shoe" style="border: none; border-radius: 45px; overflow: hidden; box-shadow: 0 15px 35px rgba(255, 51, 133, 0.1); transition: 0.4s;">
+            
+            <a href="{{ url_for('core.details', id=shoe.id) }}" style="text-decoration: none;">
+              <div style="overflow: hidden;">
+                <img src="{{shoe.img_url}}" alt="{{shoe.name}}" class="card-img-top" style="height: 280px; object-fit: cover; transition: 0.5s;">
+              </div>
+            </a>
+
+            <div class="card-body" style="padding: 30px;">
+              <h4 style="color: #333; font-weight: 800; margin-bottom: 15px;">{{shoe.name}}</h4>
+              
+              <div class="shoe-price" style="font-size: 1.4rem; color: #ff3385; font-weight: 700;">
+                <i class="bi bi-cash-coin"></i> {{shoe.price}} บาท
+              </div>
+
+              <div class="mt-3">
+                {% for cat in shoe.categories %}
+                  <span class="btn btn-sm" style="background-color: #fdf2f7; color: #ff3385; border: 1px solid #ffe6f0; border-radius: 25px; padding: 5px 15px; font-weight: 600; margin-right: 5px; margin-bottom: 5px; pointer-events: none;">
+                    {{cat.name}}
+                  </span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if shoes|length == 0 and q %}
+      <div class="text-center" style="margin-top: 7rem;">
+        <div style="font-size: 8rem; color: #ffdae9;">
+          <i class="bi bi-emoji-frown"></i>
+        </div>
+        <h2 style="color: #ff3385; font-weight: 800;">อุ๊ย! ไม่พบรองเท้าที่ค้นหา</h2>
+        <p style="color: #999; font-size: 1.3rem;">ลองค้นหาด้วยชื่อรุ่นหรือแบรนด์อื่นดูนะคะ</p>
+        <a href="{{ url_for('core.index') }}" class="btn btn-lg mt-4" style="background: #ff3385; color: white; border-radius: 35px; padding: 15px 40px; font-weight: 700;">
+          กลับไปดูรองเท้าทั้งหมด
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  <style>
+    /* เอฟเฟกต์ Hover สำหรับการ์ด */
+    .card-shoe:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(255, 51, 133, 0.25) !important;
+    }
+    .card-shoe:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+{% endblock %}

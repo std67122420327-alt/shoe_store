@@ -1,0 +1,27 @@
+{% if shoes %}
+  <div style="position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 35px; box-shadow: 0 20px 50px rgba(255, 51, 133, 0.15); z-index: 1000; max-height: 500px; overflow-y: auto; margin-top: 15px; border: 2px solid #ffe6f0;">
+    
+    {% for shoe in shoes %}
+      <a href="{{ url_for('core.details', id=shoe.id) }}" 
+         style="text-decoration: none; color: inherit; display: block; padding: 25px; border-bottom: 1px solid #fdf2f7; transition: all 0.4s ease;" 
+         onmouseover="this.style.background='#fff0f6'; this.style.paddingLeft='35px';" 
+         onmouseout="this.style.background='white'; this.style.paddingLeft='25px';">
+        
+        <div style="display: flex; align-items: center; gap: 25px;">
+          <img src="{{shoe.img_url}}" alt="{{shoe.name}}" style="width: 70px; height: 70px; border-radius: 20px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+          
+          <div style="flex: 1;">
+            <h5 style="margin: 0; color: #333; font-weight: 700; font-size: 1.1rem;">{{shoe.name}}</h5>
+            <p style="margin: 8px 0 0 0; color: #ff3385; font-weight: 800; font-size: 1.1rem;">{{shoe.price}} บาท</p>
+          </div>
+          
+          <i class="bi bi-chevron-right" style="color: #ffb3d1; font-size: 1.3rem;"></i>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+  <script>
+    document.getElementById('search-dropdown').style.display = 'block';
+  </script>
+{% endif %}

@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg" style="background-color: white; border-bottom: 3px solid #fdf2f7; padding: 15px 0;">
+  <div class="container-fluid">
+    {% if current_user.is_authenticated %}
+        <a class="navbar-brand" href="{{ url_for('users.index') }}" style="font-weight: 800; color: #ff3385; font-size: 1.6rem;">
+          <i class="bi bi-bag-heart-fill"></i> Shoe Store
+        </a>
+    {% else %}
+        <a class="navbar-brand" href="{{ url_for('core.index') }}" style="font-weight: 800; color: #ff3385; font-size: 1.6rem;">
+          <i class="bi bi-bag-heart-fill"></i> Shoe Store
+        </a>
+    {% endif %}
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="border-radius: 15px; border: 2px solid #ffe6f0;">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
+        {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a href="{{ url_for('shoe.index') }}" class="nav-link" style="font-weight: 600; color: #555; padding-left: 20px;">
+               <i class="bi bi-list-ul"></i> รายการรองเท้า
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ url_for('core.index') }}" style="font-weight: 600; color: #555; padding-left: 20px;">
+              <i class="bi bi-house-heart"></i> Home
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <div class="d-flex me-4 position-relative" id="search-container" style="width: 350px;">
+        <input class="form-control" type="search" name="q" placeholder="🔍 ค้นหารองเท้าที่ใช่..." aria-label="Search"
+          hx-get="{{ url_for('shoe.search_live') }}"
+          hx-trigger="keyup changed delay:300ms"
+          hx-target="#search-dropdown"
+          autocomplete="off"
+          style="border-radius: 35px; border: 3px solid #ffe6f0; padding: 12px 25px; font-size: 1rem; background-color: #fdf2f7;">
+        
+        <div id="search-dropdown" style="display: none;"></div>
+      </div>
+      
+      <ul class="navbar-nav">
+        {% if current_user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 700; color: #ff3385; background: #fdf2f7; border-radius: 30px; padding: 10px 20px;">
+                <img src="{{url_for('static', filename='img/' + current_user.avatar)}}" alt="avatar" width="30" height="30" style="border-radius: 50%; border: 2px solid #ff3385; margin-right: 5px;">
+                Welcome, {{current_user.username}}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end shadow-lg" style="border: none; border-radius: 25px; padding: 15px; margin-top: 15px;">
+                <li><a class="dropdown-item" href="{{ url_for('users.profile') }}" style="border-radius: 15px; padding: 10px 20px;">
+                  <i class="bi bi-person-square" style="color: #ff3385;"></i> Profile</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('users.change_password') }}" style="border-radius: 15px; padding: 10px 20px;">
+                  <i class="bi bi-shield-lock" style="color: #ff3385;"></i> Change Password</a></li>
+                <li><hr class="dropdown-divider" style="border-top: 2px solid #fdf2f7;"></li>
+                <li><a class="dropdown-item text-danger" href="{{ url_for('users.logout') }}" style="border-radius: 15px; padding: 10px 20px; font-weight: 600;">
+                  <i class="bi bi-box-

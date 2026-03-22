@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container" style="margin-top: 5rem; margin-bottom: 5rem;">
+    <div class="row">
+      <div class="col-12 mb-5">
+        <h1 class="display-3 fw-bold" style="color: #333;">
+          <i class="bi bi-bookmark-star" style="color: #ff3385;"></i> {{shoe.name}}
+        </h1>
+      </div>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <img src="{{shoe.img_url}}" alt="{{shoe.name}}" class="img-fluid shadow-lg w-100" style="border-radius: 45px; object-fit: cover; min-height: 500px;">
+      </div>
+
+      <div class="col-md-6">
+        <div class="card" style="border: none; border-radius: 45px; padding: 50px; background: white; box-shadow: 0 20px 50px rgba(255, 51, 133, 0.15);">
+          
+          <h2 class="fw-bold mb-4" style="color: #333;">
+            <i class="bi bi-card-text" style="color: #ff3385;"></i> รายละเอียดสินค้า
+          </h2>
+          <p style="font-size: 1.3rem; color: #555; line-height: 1.8; margin-bottom: 30px;">{{shoe.description}}</p>
+          
+          <h2 class="fw-bold mt-4 mb-3" style="color: #333;">
+            <i class="bi bi-tag" style="color: #ff3385;"></i> ราคาพิเศษ
+          </h2>
+          <div class="shoe-price" style="font-size: 2.5rem; color: #ff3385; font-weight: 800; margin-bottom: 30px;">
+            <i class="bi bi-cash-coin"></i> {{shoe.price}} บาท
+          </div>
+          
+          <h2 class="fw-bold mt-4 mb-3" style="color: #333;">
+            <i class="bi bi-collection" style="color: #ff3385;"></i> แบรนด์ / หมวดหมู่
+          </h2>
+          <div class="mb-5">
+            {% for cat in shoe.categories %}
+              <span class="btn btn-lg" style="background: #fdf2f7; color: #ff3385; border: 2px solid #ffe6f0; border-radius: 35px; padding: 10px 25px; font-weight: 700; margin-right: 10px; pointer-events: none;">
+                {{cat.name}}
+              </span>
+            {% endfor %}
+          </div>
+          
+          <div class="mt-auto">
+            <a href="{{ url_for('core.index') }}" class="btn btn-lg w-100" style="background: linear-gradient(135deg, #ff3385 0%, #ff85b3 100%); color: white; border: none; border-radius: 35px; padding: 20px; font-weight: 800; font-size: 1.3rem; box-shadow: 0 10px 25px rgba(255, 51, 133, 0.3);">
+              <i class="bi bi-arrow-left-circle me-2"></i>
+              เลือกดูคู่อื่นต่อ
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

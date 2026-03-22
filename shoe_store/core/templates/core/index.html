@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="shoe-hero" style="background: linear-gradient(135deg, #ff3385 0%, #ff85b3 100%); padding: 120px 0; color: white; border-radius: 0 0 50px 50px; margin-bottom: 60px;">
+    <div class="container text-center">
+      <h1 style="font-size: 4rem; font-weight: 800; letter-spacing: -1px;">Shoe Store</h1>
+      <p style="font-size: 1.6rem; opacity: 0.9;">รองเท้าคู่โปรดที่คุณตามหา พร้อมส่งตรงถึงบ้านคุณ</p>
+    </div>
+  </div>
+  
+  <div class="container mt-5">
+    <h2 class="section-title text-center mb-5" style="font-size: 2.5rem; font-weight: 800; color: #333;">
+      <i class="bi bi-stars" style="color: #ff3385;"></i> สินค้ามาใหม่ยอดนิยม
+    </h2>
+
+    <div class="row g-5">
+      {% for shoe in shoes %}
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card card-shoe" style="border: none; border-radius: 45px; overflow: hidden; box-shadow: 0 15px 35px rgba(255, 51, 133, 0.1); transition: 0.4s;">
+            
+            <a href="{{ url_for('core.details', id=shoe.id) }}" style="text-decoration: none;">
+              <div style="overflow: hidden;">
+                <img src="{{shoe.img_url}}" alt="{{shoe.name}}" class="card-img-top" style="height: 280px; object-fit: cover; transition: 0.5s;">
+              </div>
+            </a>
+
+            <div class="card-body" style="padding: 30px;">
+              <h4 style="color: #333; font-weight: 800; margin-bottom: 15px;">{{shoe.name}}</h4>
+              
+              <div class="shoe-price" style="font-size: 1.4rem; color: #ff3385; font-weight: 700;">
+                <i class="bi bi-cash-coin"></i> {{shoe.price}} บาท
+              </div>
+
+              <div class="mt-3">
+                {% for cat in shoe.categories %}
+                  <a href="#" class="btn btn-sm" style="background-color: #fdf2f7; color: #ff3385; border: 1px solid #ffe6f0; border-radius: 25px; padding: 5px 15px; font-weight: 600; margin-right: 5px; margin-bottom: 5px;">
+                    {{cat.name}}
+                  </a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="mt-5 mb-5">
+      {% include "core/pagination.html" %}
+    </div>
+  </div>
+
+  <style>
+    .card-shoe:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(255, 51, 133, 0.25) !important;
+    }
+    .card-shoe:hover img {
+      transform: scale(1.1);
+    }
+  </style>
+{% endblock %}

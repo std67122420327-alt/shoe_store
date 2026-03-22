@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="shoe-hero" style="background: linear-gradient(135deg, #ff3385 0%, #ff85b3 100%); padding: 100px 0; color: white; margin-bottom: 50px; border-radius: 0 0 50px 50px;">
+    <div class="container text-center">
+      <h1 style="font-size: 3.5rem; font-weight: 800;">👟ยินดีต้อนรับกลับมา!👟  </h1>
+      <p style="font-size: 1.5rem; opacity: 0.9;">พร้อมจัดการสต็อกรองเท้าสวยๆ แล้วหรือยัง?</p>
+    </div>
+  </div>
+  
+  <div class="container mt-5 mb-5">
+    <div class="row g-5">
+      
+      <div class="col-md-4">
+        <a href="{{ url_for('core.index') }}" style="text-decoration: none;">
+          <div class="card dashboard-card text-center" style="border: none; border-radius: 45px; padding: 60px; background: linear-gradient(135deg, #ff3385 0%, #ff85b3 100%); color: white; box-shadow: 0 15px 40px rgba(255, 51, 133, 0.3); transition: 0.3s;">
+            <i class="bi bi-house-door" style="font-size: 6rem; margin-bottom: 20px;"></i>
+            <h2 style="font-weight: 800;">หน้าแรก</h2>
+            <p style="font-size: 1.1rem;">ดูรองเท้าทั้งหมดในร้าน</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('shoe.index') }}" style="text-decoration: none;">
+          <div class="card dashboard-card text-center" style="border: none; border-radius: 45px; padding: 60px; background: linear-gradient(135deg, #ff1a75 0%, #ff66a3 100%); color: white; box-shadow: 0 15px 40px rgba(255, 26, 117, 0.3); transition: 0.3s;">
+            <i class="bi bi-list-stars" style="font-size: 6rem; margin-bottom: 20px;"></i>
+            <h2 style="font-weight: 800;">จัดการสต็อก</h2>
+            <p style="font-size: 1.1rem;">เพิ่ม/แก้ไข/ลบ รายการรองเท้า</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="{{ url_for('users.profile') }}" style="text-decoration: none;">
+          <div class="card dashboard-card text-center" style="border: none; border-radius: 45px; padding: 60px; background: linear-gradient(135deg, #e6005c 0%, #ff4d94 100%); color: white; box-shadow: 0 15px 40px rgba(230, 0, 92, 0.3); transition: 0.3s;">
+            <i class="bi bi-person-circle" style="font-size: 6rem; margin-bottom: 20px;"></i>
+            <h2 style="font-weight: 800;">โปรไฟล์</h2>
+            <p style="font-size: 1.1rem;">จัดการข้อมูลส่วนตัวของคุณ</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <style>
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(255, 51, 133, 0.4) !important;
+    }
+  </style>
+{% endblock %}
