@@ -25,7 +25,6 @@
           </li>
         {% endif %}
     {% endfor %}
-
     {% if shoes.has_next %}
     <li class="page-item">
       <a class="page-link" href="{{url_for('core.index', page=shoes.next_num)}}" style="border-radius: 0 15px 15px 0; border: 2px solid #ff3385; color: #ff3385; font-weight: 600;">
