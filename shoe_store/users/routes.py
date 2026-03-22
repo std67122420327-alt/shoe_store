@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from shoe_store.models import User # เปลี่ยนจาก foodapp เป็น shoe_store
-from shoe_store.extensions import db, bcrypt # เปลี่ยนจาก foodapp เป็น shoe_store
+from shoe_store.models import User 
+from shoe_store.extensions import db, bcrypt 
 from flask_login import login_user, logout_user, login_required, current_user
 
 user_bp = Blueprint('users', __name__, template_folder='templates')
