@@ -40,6 +40,13 @@ def register():
                     flash('Passwords do not match.', 'warning')
                     return redirect(url_for('users.register'))
 
+
+
+
+
+
+
+    
     return render_template('users/register.html', title='Register Page')
 
 @user_bp.route('/login', methods=['GET', 'POST'])
