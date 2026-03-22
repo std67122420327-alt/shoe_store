@@ -1,6 +1,11 @@
 import os
 from flask import Flask
-# ... (import db, bcrypt, login_manager ของคุณมาด้วย)
+from shoe_store.extensions import db, login_manager, bcrypt
+from shoe_store.models import User, Category, Food
+from shoe_store.food_categories import CATEGORY_NAMES
+from shoe_store.core.routes import core_bp
+from shoe_store.users.routes import user_bp
+from shoe_store.foods.routes import food_bp
 
 def create_app():
     app = Flask(__name__)
