@@ -1,2 +1,0 @@
-<link rel="shortcut icon" href="{{ url_for('static', filename='img/sneaker.png') }}" type="image/x-icon">
-<link rel="icon" href="{{ url_for('static', filename='img/sneaker.png') }}" type="image/x-icon">
