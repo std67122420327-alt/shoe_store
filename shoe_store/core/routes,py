@@ -1,19 +1,26 @@
 from flask import Blueprint, render_template, request, abort
 from shoe_store.extensions import db
-from shoe_store.models import Food, Category
-
+from shoe_store.models import Shoe, Category # เปลี่ยนจาก Food เป็น Shoe
 
 core_bp = Blueprint('core', __name__, template_folder='templates')
 
 @core_bp.route('/')
 def index():
-    page = request.args.get('page',type=int)
-    foods = db.paginate(db.select(Food), per_page=4, page=page)
-    return render_template('core/index.html', title='Home Page', page=page, shoes=shoes )
+ 
+    page = request.args.get('page', default=1, type=int)
+    
+  
+    query = db.select(Shoe).order_by(Shoe.id.desc())
+    shoes = db.paginate(query, per_page=4, page=page)
+    
+    return render_template('core/index.html', title='Home Page', shoes=shoes)
 
 @core_bp.route('/<int:id>/details')
 def details(id):
-    food = db.session.get(Shoe, id)
+  
+    shoe = db.session.get(Shoe, id)
+   
     if not shoe:
         abort(404)
+        
     return render_template('core/shoe_detail.html', title='Details Page', shoe=shoe)
