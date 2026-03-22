@@ -1,3 +1,3 @@
-from foodapp import create_app
+from shoe_store import create_app
 
 app = create_app()
