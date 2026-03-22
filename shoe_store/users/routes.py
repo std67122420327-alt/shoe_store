@@ -106,7 +106,6 @@ def change_password():
         if not bcrypt.check_password_hash(current_user.password, old_password):
             flash('Old password is incorrect.', 'warning')
             return redirect(url_for('users.change_password'))
-
         if new_password != confirm_password:
             flash('New passwords do not match.', 'warning')
             return redirect(url_for('users.change_password'))
