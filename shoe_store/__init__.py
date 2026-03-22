@@ -5,7 +5,7 @@ from shoe_store.models import User, Category, Shoe
 from shoe_store.shoe_categories import CATEGORY_NAMES
 from shoe_store.core.routes import core_bp
 from shoe_store.users.routes import user_bp
-from shoe_store.shoes.routes import food_bp
+from shoe_store.shoes.routes import shoe_bp
 
 def create_app():
     app = Flask(__name__)
