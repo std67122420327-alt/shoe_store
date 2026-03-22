@@ -11,5 +11,5 @@ categories= [
     'Crocs'
 ]
 
-from shoe๘หะนพำ.models import Category 
+from shoe_store.models import Category 
 shoe_categories = [Category(name=cat) for cat in categories ]
